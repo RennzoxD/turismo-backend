@@ -11,7 +11,7 @@ class MunicipalidadTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function puede_crear_una_municipalidad_con_todos_los_campos()
+    public function flujo_completo_crud_municipalidad()
     {
         $data = [
             'nombre' => 'Municipalidad Capachica',
@@ -39,5 +39,22 @@ class MunicipalidadTest extends TestCase
 
         $this->assertDatabaseHas('municipalidad', ['nombre' => 'Municipalidad Capachica']);
         $this->assertEquals($data['descripcion'], $municipalidad->descripcion);
+
+          // Crear
+        $response = $this->postJson('/api/municipalidades', $data);
+        $response->assertStatus(201);
+
+    // Leer
+        $response = $this->getJson('/api/municipalidades');
+        $response->assertStatus(200)->assertJsonFragment(['nombre' => 'Municipalidad A']);
+
+    // Actualizar
+        $id = $response->json()[0]['id'];
+        $response = $this->putJson("/api/municipalidades/$id", ['nombre' => 'Municipalidad Modificada']);
+        $response->assertStatus(200);
+
+    // Eliminar
+        $response = $this->deleteJson("/api/municipalidades/$id");
+        $response->assertStatus(204);
     }
 }

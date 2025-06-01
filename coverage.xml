@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1748716918">
-  <project timestamp="1748716918">
+<coverage generated="1748730084">
+  <project timestamp="1748730084">
     <package name="App\Http\Controllers\API\AccessControl">
       <file name="E:\Turism\capachica-project\turismo-backend\app\Http\Controllers\API\AccessControl\PermissionController.php">
         <class name="App\Http\Controllers\API\AccessControl\PermissionController" namespace="App\Http\Controllers\API\AccessControl">
